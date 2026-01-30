@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpendWise | Dashboard</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #64748b;
+            --bg-color: #f8fafc;
+            --sidebar-bg: #1e293b;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            background-color: var(--bg-color);
+        }
+
+        /* --- Sidebar Styles --- */
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            box-sizing: border-box;
+        }
+
+        .sidebar h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            display: block;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* --- Main Content Area --- */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        /* Top Header */
+        .header {
+            background-color: var(--card-bg);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Dashboard Content */
+        .dashboard-container {
+            padding: 2rem;
+        }
+
+        .welcome-msg {
+            margin-bottom: 2rem;
+        }
+
+        .welcome-msg h1 {
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        /* Grid for Action Buttons */
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .action-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            border-color: var(--primary-color);
+        }
+
+        .action-card i {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .action-card h3 {
+            margin: 0;
+            color: var(--text-main);
+            font-size: 1.1rem;
+        }
+
+        /* Specific Button Colors/Icons (Emojis used for simplicity) */
+        .btn-add { border-top: 5px solid #10b981; }
+        .btn-update { border-top: 5px solid #f59e0b; }
+        .btn-delete { border-top: 5px solid #ef4444; }
+        .btn-view { border-top: 5px solid var(--primary-color); }
+
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h2>SpendWise</h2>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Dashboard</a></li>
+            <li><a href="#">Weekly Report</a></li>
+            <li><a href="#">Monthly Report</a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <header class="header">
+            <div class="profile-container" title="View Profile">
+                <span>John Doe</span>
+                <div class="profile-icon">JD</div>
+            </div>
+        </header>
+
+        <main class="dashboard-container">
+            <div class="welcome-msg">
+                <h1>Overview</h1>
+                <p style="color: var(--secondary-color);">What would you like to do today?</p>
+            </div>
+
+            <div class="action-grid">
+                <div class="action-card btn-add" onclick="handleAction('Add')">
+                    <span>➕</span>
+                    <h3>Add Expense</h3>
+                </div>
+                <div class="action-card btn-update" onclick="handleAction('Update')">
+                    <span>📝</span>
+                    <h3>Update Expense</h3>
+                </div>
+                <div class="action-card btn-delete" onclick="handleAction('Delete')">
+                    <span>🗑️</span>
+                    <h3>Delete Expense</h3>
+                </div>
+                <div class="action-card btn-view" onclick="handleAction('View')">
+                    <span>👁️</span>
+                    <h3>View Expenses</h3>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function handleAction(action) {
+            // This is where you would trigger modals or navigation
+            alert(action + " Expense functionality coming soon!");
+        }
+
+        // Simple Nav Highlighting Logic
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
